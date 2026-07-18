@@ -322,13 +322,6 @@ int main() {
     pthread_create(&encomendas[1], NULL, encomenda_motor, (void*) dados_encomenda);
     pthread_create(&encomendas[2], NULL, encomenda_roda, (void*) dados_encomenda);
 
-    if (!pthread_equal(pthread_self(), id_main_thread)) {
-        sleep(1);
-        for (int i = 0; i < 3; i++) {
-            pthread_cancel(encomendas[i]);
-        }
-    }
-
     for (int i = 0; i < 3; i++) {
         pthread_join(encomendas[i], NULL);
     }
